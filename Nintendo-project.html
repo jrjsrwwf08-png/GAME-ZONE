@@ -20,7 +20,7 @@
             <a href="mobile.html">Mobile</a>
             <a href="My-Profile.html">Profile</a>
         </div>
-      <a href="log.html"><button class="btn-login">LOGIN</button></a>
+      <a href="log.html"><button class="btn-login" id="logoutBtn">LOGIN</button></a>
     </nav>
 <button class="btn-theme-toggle" id="themeToggle" title="Switch Theme">
         <span class="theme-icon" id="themeIcon">☀️</span>
@@ -505,6 +505,39 @@
 
    
     <script>
+    const logoutBtn = document.getElementById('logoutBtn');
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUserEmail');
+                localStorage.removeItem('loggedInUser');
+
+                window.location.href = "log.html"; 
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const authBtn = document.getElementById('logoutBtn'); 
+        
+            const currentUser = localStorage.getItem('currentUserEmail');
+        
+            if (currentUser) {
+                logoutBtn.innerText = "SIGNOUT";
+
+                logoutBtn.onclick = function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUserEmail');
+                    localStorage.removeItem('loggedInUser');
+                    location.reload();
+                };
+            } else {
+                logoutBtn.innerText = "Sign In";
+                logoutBtn.onclick = function() {
+                    window.location.href = "log.html";
+                };
+            }
+        });
+        
 const themeSheet   = document.getElementById('theme-stylesheet');
     const themeToggle  = document.getElementById('themeToggle');
     const themeIcon    = document.getElementById('themeIcon');

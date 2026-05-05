@@ -15,7 +15,9 @@
 html{
     scroll-behavior: smooth;
 }
-
+.catagory-btn{
+    text-decoration: none;
+}
 body {
     background-color:white;
     color: var(--text-main);
@@ -29,7 +31,7 @@ h1, h2, h3, .nav-brand {
     text-transform: uppercase;
 }
 
-/* Navbar */
+
 .navbar {
     display: flex;
     flex-direction: column;
@@ -75,7 +77,7 @@ h1, h2, h3, .nav-brand {
     cursor: pointer;
 }
 
-/* Hero Section */
+
 .home1 {
     background-image: url(img/Image.jpeg);
     width: 100%;
@@ -129,7 +131,7 @@ h1, h2, h3, .nav-brand {
     z-index: -1;
 }
 
-/* Grid & Cards */
+
 .section-container{
     padding: 2rem 0;
     max-width: 78%;
@@ -188,7 +190,7 @@ h1, h2, h3, .nav-brand {
 
 .btn-card:hover { background: white; color: black; }
 
-/* Categories */
+
 .categories-section { background: rgba(255,255,255,0.02); }
 .category-grid {
     display: grid;
@@ -208,7 +210,7 @@ h1, h2, h3, .nav-brand {
 
 .category-card:hover { background: white; color: black; }
 
-/* Trending Scroll */
+
 .horizontal-scroll {
     display: flex;
     gap: 1.5rem;
@@ -240,7 +242,7 @@ h1, h2, h3, .nav-brand {
     font-weight: bold;
 }
 
-/* Community & Footer */
+
 .community-box { text-align: center; padding: 4rem;}
 .stats-grid {
     display: flex;
@@ -319,12 +321,12 @@ footer {
     border-top: 1px solid var(--border);
     padding-top: 20px;
 }
-/* Responsive Adjustments */
+
 @media (max-width: 600px) {
     .nav-links { display:block; }
     .stats-grid { flex-direction: column; gap: 1.5rem; }
 }
-/* Variables for easy adjustments */
+
 :root {
     --scroll-speed: 40s;
     --img-width: 280px;
@@ -336,45 +338,45 @@ footer {
     overflow: hidden;
     padding: 20px 0;
     position: relative;
-    background: transparent; /* Matches your site background */
+    background: transparent; 
 }
 
 .scroll-track {
     display: flex;
-    width: max-content; /* Critical: allows the track to be as long as the images */
+    width: max-content; 
     gap: var(--img-gap);
     animation: scroll-animation var(--scroll-speed) linear infinite;
 }
 
 .scroll-track img {
     width: 300px;
-    height: 450px; /* Adjust height as needed */
+    height: 450px; 
     object-fit: cover;
     border-radius: 15px;
     transition: transform 0.4s ease;
 }
 
-/* Pause when the user hovers over the images */
+
 .scroll-container:hover .scroll-track {
     animation-play-state: paused;
 }
 
-/* Smooth pop effect on hover */
+
 .scroll-track img:hover {
     transform: scale(1.08);
 }
 
-/* The Animation Logic */
+
 @keyframes scroll-animation {
     0% {
         transform: translateX(0);
     }
     100% {
-        /* Move exactly half the width of the duplicated track */
+      
         transform: translateX(calc(-50% - (var(--img-gap) / 2)));
     }
 }
-/* Search Bar */
+
 .search-wrapper {
     margin-bottom: 1.5rem;
 }
@@ -436,7 +438,7 @@ footer {
     min-height: 1rem;
 }
 
-/* Card highlight when found */
+
 .trending-card {
     transition: all 0.4s ease;
 }

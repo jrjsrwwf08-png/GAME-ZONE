@@ -31,7 +31,7 @@
         </div>
         <div class="nav-buttons">
             <a href="#">
-                <button class="btn-login">LOGIN</button>
+                <button class="btn-login" id="logoutBtn">LOGIN</button>
             </a>
             <button id="themeToggle" class="theme-btn">
             <i class="fas fa-moon"></i>
@@ -279,6 +279,39 @@
 
     </footer>
     <script>
+
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUserEmail');
+                localStorage.removeItem('loggedInUser');
+
+                window.location.href = "log.html"; 
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const authBtn = document.getElementById('logoutBtn'); 
+        
+            const currentUser = localStorage.getItem('currentUserEmail');
+        
+            if (currentUser) {
+                logoutBtn.innerText = "SIGNOUT";
+
+                logoutBtn.onclick = function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUserEmail');
+                    localStorage.removeItem('loggedInUser');
+                    location.reload();
+                };
+            } else {
+                logoutBtn.innerText = "Sign In";
+                logoutBtn.onclick = function() {
+                    window.location.href = "log.html";
+                };
+            }
+        });
 
         const themeBtn = document.getElementById('themeToggle');
         const icon = themeBtn.querySelector('i');

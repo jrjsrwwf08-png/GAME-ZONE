@@ -68,7 +68,28 @@ h1, h2, h3, .nav-brand {
     font-weight: bold;
     cursor: pointer;
 }
+.btn-theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
 
+.btn-theme-toggle:hover {
+    background: rgba(255,255,255,0.25);
+}
 .home1 {
     height: 100vh;
     display: flex;

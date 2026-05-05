@@ -509,7 +509,7 @@
             <button id="themeToggle" class="theme-btn" title="Toggle Theme & Layout">
                 <i class="fas fa-sun"></i>
             </button>
-            <a href="#" class="login-btn"><i class="fas fa-user"></i> Sign In</a>
+            <a href="log.html" class="login-btn"><i class="fas fa-user"></i> Sign In</a>
         </div>
     </div>
 </header>
@@ -899,6 +899,46 @@
 </div>
 
 <script>
+const logoutBtn = document.getElementById('logoutBtn');
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUserEmail');
+                localStorage.removeItem('loggedInUser');
+
+                window.location.href = "log.html"; 
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const authBtn = document.getElementById('themeToggle'); 
+        
+            const currentUser = localStorage.getItem('currentUserEmail');
+        
+            if (currentUser) {
+                logoutBtn.innerText = "SIGNOUT";
+
+                logoutBtn.onclick = function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUserEmail');
+                    localStorage.removeItem('loggedInUser');
+                    location.reload();
+                };
+            } else {
+                logoutBtn.innerText = "Sign In";
+                logoutBtn.onclick = function() {
+                    window.location.href = "log.html";
+                };
+            }
+        });
+
+
+
+
+
+
+
+    
     const themeToggleBtn = document.getElementById('themeToggle');
     const body = document.body;
     const platformIcon = document.getElementById('platformIcon');

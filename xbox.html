@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --primary-color: #107C10;
+            --primary-hover: #0d630d;
+            --header-bg: #000000;
+            --card-bg: #222222;
+            --card-border: #333333;
+            --input-bg: #111111;
+            --footer-bg: #0a0a0a;
+            --footer-bottom: #000000;
+            --text-muted: #bbbbbb;
+            --library-btn: #333333;
+            --library-btn-hover: #444444;
+            --library-btn-text: #ffffff;
+            --hero-gradient: linear-gradient(to bottom, rgba(16, 124, 16, 0.2) 0%, #1a1a1a 100%);
+        }
+
+        
+        body.light-theme {
+            --bg-color: #f4f6f8;
+            --text-color: #111111;
+            --primary-color: #005bb5;
+            --primary-hover: #004488;
+            --header-bg: #ffffff;
+            --card-bg: #ffffff;
+            --card-border: #d1d5db;
+            --input-bg: #ffffff;
+            --footer-bg: #e5e7eb;
+            --footer-bottom: #d1d5db;
+            --text-muted: #555555;
+            --library-btn: #e5e7eb;
+            --library-btn-hover: #d1d5db;
+            --library-btn-text: #111111;
+            --hero-gradient: linear-gradient(to bottom, rgba(0, 91, 181, 0.15) 0%, #f4f6f8 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        
+        header {
+            background-color: var(--header-bg);
+            width: 100%;
+            height: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 3px solid var(--primary-color);
+            border-right: none;
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-color);
+            text-transform: uppercase;
+            margin-bottom: 0;
+            transition: 0.4s ease;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+            font-size: 32px;
+            transition: 0.4s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            transition: 0.4s ease;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #fff;
+            background-color: var(--primary-color);
+        }
+
+        .user-actions {
+            margin-top: 0;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            align-items: center;
+            transition: 0.4s ease;
+        }
+
+        .action-buttons-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .theme-btn {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            width: 45px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .theme-btn:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .user-actions .login-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .user-actions .login-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        
+        body.light-theme header {
+            width: 260px;
+            height: 100vh;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            border-bottom: none;
+            border-right: 3px solid var(--primary-color);
+        }
+
+        body.light-theme .logo {
+            margin-bottom: 20px;
+        }
+
+        body.light-theme nav ul {
+            flex-direction: column;
+            width: 100%;
+            gap: 15px;
+        }
+
+        body.light-theme nav ul li a {
+            display: block;
+            padding: 12px 15px;
+            font-size: 18px;
+        }
+
+        body.light-theme nav ul li a:hover, 
+        body.light-theme nav ul li a.active {
+            padding-left: 25px;
+        }
+
+        body.light-theme .user-actions {
+            margin-top: auto;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        body.light-theme .action-buttons-row {
+            flex-direction: row;
+        }
+
+        body.light-theme .user-actions .login-btn {
+            flex: 1;
+            padding: 12px 20px;
+        }
+
+        
+        .main-content {
+            margin-top: 80px;
+            margin-left: 0;
+            width: 100%;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        
+        body.light-theme .main-content {
+            margin-top: 0;
+            margin-left: 260px;
+            width: calc(100% - 260px);
+        }
+
+        
+        .xbox {
+            text-align: center;
+            padding: 80px 20px;
+            background: var(--hero-gradient);
+            transition: 0.4s ease;
+        }
+
+        .xbox h1 { 
+            font-size: 45px; 
+            margin-bottom: 15px; 
+            letter-spacing: -1px; 
+        }
+        .xbox p { 
+            font-size: 18px; 
+            color: var(--text-muted); 
+            max-width: 600px; 
+            margin: 0 auto 30px; 
+        }
+
+        .search-container {
+            display: flex;
+            max-width: 550px;
+            margin: 0 auto;
+            background-color: var(--input-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .search-container:focus-within {
+            box-shadow: 0 0 15px rgba(0, 91, 181, 0.4);
+        }
+
+        #searchBox {
+            flex: 1; 
+            padding: 15px 25px;
+            font-size: 16px;
+            background-color: transparent;
+            border: none; 
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .search-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-btn:hover { background-color: var(--primary-hover); }
+
+        
+        main section { 
+            max-width: 1250px; 
+            margin: 50px auto; 
+            padding: 0 50px; 
+        }
+        .section-title { 
+            font-size: 26px; 
+            margin-bottom: 30px; 
+            border-left: 5px solid var(--primary-color); 
+            padding-left: 15px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .game-card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--primary-color); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+        }
+        .game-image { 
+            width: 100%; 
+            aspect-ratio: 3 / 4; 
+            overflow: hidden; 
+            background-color: #000; 
+        }
+        .game-image img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: 0.5s; 
+        }
+        .game-card:hover .game-image img { 
+            transform: scale(1.1); 
+        }
+        .game-info { 
+            padding: 18px; 
+        }
+        .game-info h3 { 
+            font-size: 17px; 
+            margin-bottom: 5px; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+        }
+        .game-info .category { 
+            font-size: 13px; 
+            color: var(--text-muted); 
+            margin-bottom: 15px; 
+            display: block; 
+        }
+
+        .card-buttons { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 10px; 
+        }
+        .download-btn, .library-btn { 
+            flex: 1; 
+            border: none; 
+            padding: 10px 5px; 
+            border-radius: 6px; 
+            font-size: 13px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            text-align: center; 
+        }
+        .download-btn { 
+            background-color: var(--primary-color); 
+            color: #fff; 
+        }
+        .download-btn:hover { 
+            background-color: var(--primary-hover); 
+        }
+        .library-btn { 
+            background-color: var(--library-btn); 
+            color: var(--library-btn-text); 
+        }
+        .library-btn:hover { 
+            background-color: var(--library-btn-hover); 
+        }
+
+        
+        .pro-footer { 
+            background-color: var(--footer-bg); 
+            border-top: 3px solid var(--primary-color); 
+            padding-top: 50px; 
+            margin-top: 60px; 
+            transition: 0.4s ease; 
+        }
+        .footer-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            flex-wrap: wrap; 
+            gap: 40px; 
+            padding: 0 50px 40px 50px; 
+        }
+        .footer-column { 
+            flex: 1; 
+            min-width: 250px; 
+        }
+        .footer-column h3 { 
+            font-size: 18px; 
+            margin-bottom: 20px; 
+            position: relative; 
+            padding-bottom: 10px; 
+        }
+        .footer-column h3::after { 
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            bottom: 0; 
+            width: 40px; 
+            height: 2px; 
+            background-color: var(--primary-color); 
+        }
+        .footer-column ul { 
+            list-style: none; 
+        }
+        .footer-column ul li { 
+            margin-bottom: 10px; 
+        }
+        .footer-column ul li a { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            transition: 0.3s; 
+        }
+        .footer-column ul li a:hover { 
+            color: var(--primary-color); 
+            padding-left: 5px; 
+        }
+        .about-col p { 
+            color: var(--text-muted); 
+            font-size: 14px; 
+            margin: 15px 0; 
+        }
+        .social-icons { 
+            display: flex; 
+            gap: 15px; 
+        }
+        .social-icons a { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 35px; 
+            height: 35px; 
+            background-color: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            color: var(--text-color); 
+            border-radius: 50%; 
+            text-decoration: none; 
+            transition: 0.3s; 
+        }
+        .social-icons a:hover { 
+            background-color: var(--primary-color); 
+            color: #fff; 
+            transform: translateY(-3px); 
+            border-color: var(--primary-color); 
+        }
+        .footer-bottom { 
+            background-color: var(--footer-bottom); 
+            text-align: center; 
+            padding: 20px; 
+            color: var(--text-muted); 
+            font-size: 13px; 
+            border-top: 1px solid var(--card-border); 
+        }
+
+    </style>
+</head>
+<body>
+
+<header id="mainHeader">
+    <div class="logo">
+        <i class="fab fa-xbox" id="platformIcon"></i>
+        <span>GameZone</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="xbox.html" class="active">Xbox</a></li>
+            <li><a href="ps5.html">PlayStation</a></li>
+            <li><a href="pc.html">PC</a></li>
+            <li><a href="mobile.html">Mobile</a></li>
+            <li><a href="Nintendo-project.html">Nintendo</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="My-Profile.html">My Profile</a></li>
+            <li><a href="Contact-Us.html">Support</a></li>
+        </ul>
+    </nav>
+    
+    <div class="user-actions">
+        <div class="action-buttons-row">
+            <button id="themeToggle" class="theme-btn" title="Toggle Theme & Layout">
+                <i class="fas fa-sun"></i>
+            </button>
+            <a href="#" class="login-btn"><i class="fas fa-user"></i> Sign In</a>
+        </div>
+    </div>
+</header>
+
+<div class="main-content" id="mainContent">
+    <section class="xbox">
+        <h1>The World of Xbox Games</h1>
+        <p>Discover the latest and greatest Xbox exclusives and download your favorite games instantly.</p>
+        <div class="search-container">
+            <input type="text" id="searchBox" placeholder="Search for a game...">
+            <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+    </section>
+
+    <main>
+        <section>
+            <h2 class="section-title">Featured Games</h2>
+            <div class="games-container">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/81m6eA+fflL._AC_UF894,1000_QL80_.jpg" alt="Halo Infinite">
+                    </div>
+                    <div class="game-info">
+                        <h3>Halo Infinite</h3>
+                        <span class="category">Action / Shooter</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/images.jfif" alt="Forza Horizon 5">
+                    </div>
+                    <div class="game-info">
+                        <h3>Forza Horizon 5</h3>
+                        <span class="category">Racing</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/images (1).jfif" alt="Gears 5">
+                    </div>
+                    <div class="game-info">
+                        <h3>Gears 5</h3>
+                        <span class="category">Action / Adventure</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/marvel-s-spider-man-remastered-pc.jpg" alt="Spiderman">
+                    </div>
+                    <div class="game-info">
+                        <h3>Spiderman Remastered</h3>
+                        <span class="category">Action / Adventure</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/2078750ea356ba9fd472655dec36c068.jpg" alt="Detroit">
+                    </div>
+                    <div class="game-info">
+                        <h3>Detroit: Become Human</h3>
+                        <span class="category">Action / Adventure</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/71PrNDWXLIL._AC_UF894,1000_QL80_.jpg" alt="Red Dead">
+                    </div>
+                    <div class="game-info">
+                        <h3>Red Dead Redemption 2</h3>
+                        <span class="category">Action / Adventure</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/9c2bab00442da25569e13f04de9ffae5.ico" alt="Grand Theft Auto">
+                    </div>
+                    <div class="game-info">
+                        <h3>Grand Theft Auto V</h3>
+                        <span class="category">Action / Adventure</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/images (2).jfif" alt="Need For Speed">
+                    </div>
+                    <div class="game-info">
+                        <h3>Need for Speed Unbound</h3>
+                        <span class="category">Racing</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Trending Games</h2>
+            <div class="games-container">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/images (3).jfif" alt="Cyberpunk 2077">
+                    </div>
+                    <div class="game-info">
+                        <h3>Cyberpunk 2077</h3>
+                        <span class="category">RPG / Action</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/images (4).jfif" alt="Elden Ring">
+                    </div>
+                    <div class="game-info">
+                        <h3>Elden Ring</h3>
+                        <span class="category">Action RPG</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/tile.webp" alt="Starfield">
+                    </div>
+                    <div class="game-info">
+                        <h3>Starfield</h3>
+                        <span class="category">Space RPG</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/images (5).jfif" alt="The Crew Motorfest">
+                    </div>
+                    <div class="game-info">
+                        <h3>The Crew Motorfest</h3>
+                        <span class="category">Racing</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/images (6).jfif" alt="Hot Wheels Unleashed">
+                    </div>
+                    <div class="game-info">
+                        <h3>Hot Wheels Unleashed</h3>
+                        <span class="category">Racing</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/ad4de8be467a7f946ea1e0d0ac17cf3a.png" alt="Hunt">
+                    </div>
+                    <div class="game-info">
+                        <h3>Hunt: Showdown</h3>
+                        <span class="category">Battle Royale</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/4904f82c12cecf6ec070fe77d7e913ce.jpg" alt="The Witcher">
+                    </div>
+                    <div class="game-info">
+                        <h3>The Witcher 3: Wild Hunt</h3>
+                        <span class="category">Battle Royale</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/IMG_3679.jpeg" alt="EA Sports">
+                    </div>
+                    <div class="game-info">
+                        <h3>EA SPORTS FC 26</h3>
+                        <span class="category">Sports</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Most Played</h2>
+            <div class="games-container">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/f732fe3f658778cfae37efa99a7139fb.jpg" alt="Call of Duty">
+                    </div>
+                    <div class="game-info">
+                        <h3>Call of Duty</h3>
+                        <span class="category">Battle Royale</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/1771604-fortnite-standard-founders-pack-playstation-4-front-cover.png" alt="Fortnite">
+                    </div>
+                    <div class="game-info">
+                        <h3>Fortnite</h3>
+                        <span class="category">Battle Royale</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/images (7).jfif" alt="Assassin's Creed Valhalla">
+                    </div>
+                    <div class="game-info">
+                        <h3>Assassin's Creed Valhalla</h3>
+                        <span class="category">Action</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/apps.50286.66091604408099736.4cc75ea1-c6a0-40ec-b7f9-7fdb8da581b2.jfif" alt="Fallout 4">
+                    </div>
+                    <div class="game-info">
+                        <h3>Fallout 4</h3>
+                        <span class="category">Action</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/apps.39640.13578379328545234.9a5c7815-319e-44dd-b243-b580c45874f3.jfif" alt="Ready or Not">
+                    </div>
+                    <div class="game-info">
+                        <h3>Ready or Not</h3>
+                        <span class="category">Action</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/apps.65104.14157056169306105.30ae0432-c36b-42e7-9bbb-f85189243ca3.jfif" alt="Resident Evil Requiem">
+                    </div>
+                    <div class="game-info">
+                        <h3>Resident Evil Requiem</h3>
+                        <span class="category">Survival</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/0d7a3aef18b1eb97e70a5148e2a2646f.jpg" alt="Apex Legends">
+                    </div>
+                    <div class="game-info">
+                        <h3>Apex Legends</h3>
+                        <span class="category">Hero Shooter</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="pic1/33c3647b285f31af940a311b3b8a8a25.jpg" alt="Rocket League">
+                    </div>
+                    <div class="game-info">
+                        <h3>Rocket League</h3>
+                        <span class="category">Sports</span>
+                        <div class="card-buttons">
+                            <button class="download-btn">Download Now</button>
+                            <button class="library-btn">Add to library</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<footer class="pro-footer">
+    <div class="footer-content">
+        <div class="footer-column about-col">
+            <div class="logo footer-logo">
+                <i class="fab fa-xbox"></i>
+                <span>GameZone</span>
+            </div>
+            <p>Your ultimate destination for the latest and greatest gaming experiences. Download, play, and connect.</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instgram.com"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="Contact-Us.html">Support / FAQ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">Action & Adventure</a></li>
+                <li><a href="#">Racing</a></li>
+                <li><a href="#">RPG</a></li>
+                <li><a href="#">Shooters</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>All rights reserved to GameZone &copy; 2026 | Designed by Fady</p>
+    </div>
+</footer>
+</div>
+
+<script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const platformIcon = document.getElementById('platformIcon');
+    const footerIcon = document.getElementById('footerIcon');
+
+    themeToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('light-theme');
+
+        if (body.classList.contains('light-theme')) {
+            themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            platformIcon.className = 'fab fa-xbox'; 
+            footerIcon.className = 'fab fa-xbox';
+        } else {
+            themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            platformIcon.className = 'fab fa-xbox'; 
+            footerIcon.className = 'fab fa-xbox';
+        }
+    });
+</script>
+
+</body>
+</html>

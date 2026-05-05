@@ -1,0 +1,265 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        :root {
+            --caret: blue;
+            --shadowContainer: rgba(30, 30, 255, 0.4);
+            --colorA: #a6a6a6;
+            --colorAH: #6284cf;
+            --buttonBack: #112255;
+            --buttonColor: white;
+            --colorButton: white;
+            --buttonBackH: #2a3b8f;
+            --shadowButton: rgba(255, 30, 150, 0.6);
+            --colorIcon: white;
+            --colorIconH: #cf58ab;
+            --borderIconH: #2a3b8f;
+            --shadowAH: #5878cf;
+            --toggleBack: linear-gradient(180deg, rgba(10, 15, 30, 0.95) 0%, rgba(26, 42, 108, 0.9) 70%, rgba(207, 77, 168, 0.4) 100%);
+        }
+
+        html {
+            font-size: 67.5%; 
+        }
+
+        body {
+            color: white;
+            background-image: url(pic/background\ login.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            caret-color: var(--caret);
+        }
+
+        .container {
+            background-color: transparent;
+            border-radius: 3rem;
+            backdrop-filter: blur(1rem);
+            box-shadow: 0 0.5rem 1.5rem var(--shadowContainer);
+            position: relative;
+            overflow: hidden;
+            width: 80rem;
+            max-width: 100%;
+            min-height: 46rem;
+        }
+
+        .container p {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin: 2rem 0;
+        }
+
+        .container a {
+            color: var(--colorA);
+            font-size: 1.5rem;
+            text-decoration: none;
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: rgb(65, 64, 64);
+            transition: all 0.5s;
+            transform: scale(1.1);
+        }
+
+        .container button {
+            background-color: var(--buttonBack);
+            color: var(--colorButton);
+            font-size: 1.2rem;
+            padding: 1rem 4rem;
+            border-radius: 1rem;
+            border: 0.1rem solid transparent;
+            font-weight: 600;
+            margin-top: 0.1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--buttonBackH);
+            border: none;
+            box-shadow: 0 0 1rem var(--shadowButton);
+            transition: all 0.5s;
+            transform: scale(1.05);
+        }
+
+        .container button.hid {
+            background-color: transparent;
+            border: 0.1rem solid white;
+            color: var(--colorButton);
+        }
+
+        .container button.hid:hover {
+            background-color: var(--buttonBackH);
+            border: none;
+            box-shadow: 0 0 2rem var(--shadowButton);
+            transform: scale(1.05);
+        }
+
+        .container form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 4rem;
+            height: 100%;
+        }
+
+        .container input {
+            background-color: #e5e6ed;
+            border: none;
+            outline: none;
+            margin: 0.8rem 0;
+            padding: 1rem;
+            font-size: 1.5rem;
+            border-radius: 1rem;
+            width: 100%;
+        }
+
+        .formContainer {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.5s;
+        }
+
+        .sign-up h1 {
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .sign-in {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        .sign-up {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .container.active .sign-in {
+            transform: translateX(100%);
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container.active .sign-up {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: move 0.5s;
+        }
+
+        @keyframes move {
+            0%, 49.99% {
+                opacity: 0;
+                z-index: 1;
+            }
+            50%, 100% {
+                opacity: 1;
+                z-index: 5;
+            }
+        }
+
+        .sign-in .icons {
+            margin: 2rem 0;
+        }
+
+        .icons a {
+            border: 0.2rem solid var(--colorIcon);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 0.3rem;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+        }
+
+        .icons a:hover {
+            color: var(--colorIconH);
+            border: 0.2rem solid var(--colorIconH);
+            box-shadow: 0 0 1rem var(--shadowAH);
+            transform: scale(1.1);
+        }
+
+        .toggle-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.5s;
+            border-radius: 10rem 0 0 10rem;
+            z-index: 1000;
+        }
+
+        .container.active .toggle-container {
+            transform: translateX(-100%);
+            border-radius: 0 10rem 10rem 0;
+        }
+
+        .toggle {
+            height: 100%;
+            background: var(--toggleBack);
+            backdrop-filter: blur(1rem);
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: all 0.5s;
+        }
+
+        .container.active .toggle {
+            transform: translateX(50%);
+        }
+
+        .toggle-panel {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 3rem;
+            text-align: center;
+            top: 0;
+            transform: translateX(0);
+            transition: all 0.5s;
+            z-index: 1001;
+        }
+
+        .left {
+            transform: translateX(-200%);
+        }
+
+        .right {
+            right: 0;
+            transform: translateX(0);
+        }
+
+        .container.active .left {
+            transform: translateX(0);
+        }
+
+        .container.active .right {
+            transform: translateX(-200%);
+        }

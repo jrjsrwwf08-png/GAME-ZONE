@@ -1,0 +1,451 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --main-bg:   #07111f;
+    --card-bg:   rgba(15, 23, 42, 0.92);
+    --backNav:    rgba(7, 17, 31, 0.96);
+    --border:    #23344f;
+    --white:     #ffffff;
+    --text:      #cbd5e1;
+    --blue:      #38bdf8;
+    --blue-dark: #0ea5e9;
+    --hover:     #1e293b;
+    --shadow:    0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+html {
+    font-size: 67.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url(pic/background\ body.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 16px 30px;
+    background: var(--backNav);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.nav-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.nav-brand span {
+    color: var(--blue);
+}
+
+.nav-links {
+    text-align: center;
+}
+
+.nav-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--blue);
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-login {
+    background: linear-gradient(to right, var(--blue), var(--blue-dark));
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.theme-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--white);
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.theme-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--blue);
+    box-shadow: var(--shadow);
+}
+
+
+main {
+    flex: 1;
+}
+
+.back {
+    padding-top: 7rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(1rem);
+    min-height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.back h1 {
+    margin-bottom: 1rem;
+    max-width: 70rem;
+    text-align: center;
+}
+
+.back-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.back button a {
+    color: white;
+    text-decoration: none;
+}
+
+.back button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #cf58ab;
+    padding: 0.7rem;
+    width: 12rem;
+    border-radius: 0.8rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease
+}
+
+.back button:hover {
+    transform: scale(1.01);
+    border: none;
+    box-shadow: 0 0 1rem #f06292;
+}
+
+.container {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 2rem 0.5rem;
+}
+
+h2 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    padding-left: 0.2rem;
+    text-transform: uppercase;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
+
+.card {
+    background-color: #112240;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 0.3rem solid rgba(240, 98, 146, 0.2);
+}
+
+.card:hover {
+    transform: translateX(-1rem);
+    box-shadow: 0 0 2rem rgba(240, 98, 146, 0.2);;
+}
+
+.card img {
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+    border-radius: 1.5rem;
+}
+
+.card h3 {
+    color: #6fcaf5;
+    margin: 1.5rem 0 1rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.card p {
+    color: white;
+    font-size: 1rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+
+.hid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 1.5rem;
+}
+
+.hid button {
+    background-color: #cf58ab;
+    color: white;
+    padding: 0.7rem;
+    margin-bottom: 2.5rem;
+    border-radius: 0.8rem;
+    width: 12rem;
+    width: 80%;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.hid button:hover {
+    background-color: #cf58ab;
+    box-shadow: 0 0 1rem #f06292;
+}
+
+.v {
+    display: block;
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 0.3rem solid #cf58ab;
+    width: 15rem;
+    background-color: transparent;
+    color: #cf58ab;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.v:hover {
+    background: #cf58ab;
+    color: white;
+    border: none;
+    box-shadow: 0 0 1rem #f06292;
+}
+
+footer {
+    background: rgba(7, 17, 31, 0.96);
+    border-top: 1px solid var(--border);
+    padding: 3rem;
+    margin-top: 4rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.footer-box h3 {
+    color: var(--blue);
+    margin-bottom: 15px;
+    border: none;
+    padding: 0;
+}
+
+.footer-box p,
+.footer-box a {
+    color: var(--text);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+    transition: 0.3s;
+}
+
+.footer-box a:hover {
+    color: var(--blue);
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.social-links a {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: white;
+    border-color: var(--blue);
+    background: rgba(56, 189, 248, 0.15);
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 35px;
+    color: var(--text);
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 60%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        text-align: center;
+    }
+
+    .back {
+        padding-top: 12rem;
+    }
+    .back h1 {
+        font-size: 2.5rem;
+        padding: 0 2rem;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 55%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        text-align: center;
+    }
+
+    .back {
+        padding-top: 10rem;
+        min-height: 50vh;
+    }
+
+    .back h1 {
+        font-size: 2.2rem;
+        line-height: 1.4;
+    }
+
+    .back-links {
+        width: 100%;
+        align-items: center;
+    }
+
+    .back button {
+        flex-direction: column; 
+        width: 80%; 
+        padding: 1.2rem;
+    }
+
+    .game-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 1rem;
+    }
+
+    .card {
+        max-width: 100%;
+    }
+
+    .card img {
+        height: 20rem;
+    }
+
+    .hid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .hid button {
+        width: 100%;
+    }
+
+    .v {
+        width: 90%;
+        margin: 2rem auto;
+    }
+
+    footer p {
+        font-size: 1.2rem;
+    }
+}

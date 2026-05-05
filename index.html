@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Gaming | Play Without Limits</title>
+    <link id="theme-stylesheet" rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">GAME<span>ZONE</span></div>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="My-Profile.html">Profile</a>
+            <a href="library.html">Library</a>
+            <a href="Contact-Us.html">Support</a>
+        </div>    
+        <a href="log.html"><button class="btn-login">LOGIN</button></a>
+    </nav>
+
+    <!-- ===== THEME TOGGLE BUTTON (fixed, works with both themes) ===== -->
+    <button class="btn-theme-toggle" id="themeToggle" title="Switch Theme">
+        <span class="theme-icon" id="themeIcon">☀️</span>
+        <span class="theme-label" id="themeLabel">Light</span>
+    </button>
+    <!-- ================================================================ -->
+
+    <section class="home1">
+        <div class="home1-content">
+            <h1>PLAY WITHOUT <br> <span class="gradient-text">LIMITS</span></h1>
+            <p>Experience the next generation of gaming. High-performance streaming, immersive worlds, and a global community waiting for you.</p>
+            <div class="home1-btns">
+                <a href="#explore"><button class="btn-primary">EXPLORE GAMES</button></a>
+                <button class="btn-secondary">JOIN NOW</button>
+            </div>
+        </div>
+        <div class="home1-glow"></div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">TOP 3 GAMES Evaluate</h2>
+        <div class="grid-layout">
+            <div class="glass-card">
+                <div class="placeholder-img"><img src="img/85p2Dwh5iDhUzRKe40QeNYh3.png.avif" width="450" height="280"></div>
+                <h3>Resident Evil 4</h3>
+                <p>Alone in a village where every shadow hides something deadly, escape feels impossible.
+Resident Evil 4 pushes you to fight, adapt, and survive against the unknown</p>
+                <div class="card-footer">
+                    <span class="rating">★ 4.9</span>
+                    <button class="btn-card">EXPLORE</button>
+                </div>
+            </div>
+            <div class="glass-card">
+                <div class="placeholder-img"><img src="img/nightmares3-1692881952367.jpg" width="450px" height="280px"></div>
+                <h3>Little NIGHTMARES 3</h3>
+                <p>trapped in a world where every shadow hunts you, survival is the only rule.
+In Little Nightmares III, fear follows your every step.</p>
+                <div class="card-footer">
+                    <span class="rating">★ 4.7</span>
+                    <button class="btn-card">EXPLORE</button>
+                </div>
+            </div>
+            <div class="glass-card">
+                <div class="placeholder-img"><img src="img/OS18LBxAVpQ1iPeGWAqSnxem.png.webp" width="450px" height="280px"></div>
+                <h3>C.O.D Modern Warfare</h3>
+                <p>In the chaos of modern combat, every decision can change the outcome.
+Call of Duty: Modern Warfare throws you into a battlefield where survival depends on skill and strategy</p>
+                <div class="card-footer">
+                    <span class="rating">★ 4.8</span>
+                    <button class="btn-card">EXPLORE</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="explore" class="categories-section">
+        <div class="section-container">
+            <h2 class="section-title text-center">Consoles</h2>
+            <div class="category-grid">
+                <a class="catagory-btn" href="ps5.html"><div class="category-card">PS4/PS5</div></a>
+                <a class="catagory-btn" href="pc.html"><div class="category-card">PC</div></a>
+                <a class="catagory-btn" href="mobile.html"><div class="category-card">MOBILE</div></a>
+                <a class="catagory-btn" href="Nintendo-project.html"><div class="category-card">NINTENDO</div></a>
+                <a class="catagory-btn" href="xbox.html"><div class="category-card">XBOX</div></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <div class="section-header">
+        </div>
+            <h2 class="section-title">TRENDING NOW</h2>
+            <div class="search-wrapper">
+    <div class="search-bar">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="gameSearch" placeholder="Search games... e.g. cyberpunk, fifa" autocomplete="off">
+        <button class="search-clear" id="clearBtn" onclick="clearSearch()">✕</button>
+    </div>
+    <div class="search-results-info" id="searchInfo"></div>
+</div>
+        <div class="horizontal-scroll">
+            <div id="counter-strike2" class="trending-card">
+                <span class="badge">#1 TOP</span>
+                <img  src="img/1.jpeg" width="100%" height="100%">
+                <h3>counter strike 2</h3>
+                <p>240K Players Online</p>
+            </div>
+            <div id="pagmata" class="trending-card"><img src="img/4.png.avif" width="100%" height="100%">
+                <h3>pragmata</h3>
+                <p>180K Players Online</p>
+            </div>
+            <div id="forza-horizon6" class="trending-card"><img src="img/7.webp" width="100%" height="85%">
+                <h3>forza horizon 6</h3>
+                <p>95K Players Online</p>
+            </div>
+            <div id="cyberpunk2077" class="trending-card"><img src="img/8.jpg" width="100%" height="85%">
+                <h3>cyberpunk 2077</h3>
+                <p>90K Players Online</p>
+            </div>
+            <div id="resident-evil-requiem" class="trending-card"><img src="img/10.jpg" width="100%" height="85%">
+                <h3>R.E Evil requiem</h3>
+                <p>75K Players Online</p>
+            </div>
+            <div id="spiderman2" class="trending-card"><img src="img/images-2.jpeg" width="100%" height="85%">
+                <h3>spider man 2</h3>
+                <p>50K Players Online</p>
+            </div>
+            <div id="fifa2026" class="trending-card"><img src="img/fifa-26-5648525b9ec2f8bdb617527818572704-1024-1024.webp" width="100%" height="85%">
+                <h3>fifa 2026</h3>
+                <p>45K Players Online</p>
+            </div>
+        </div>
+    <section class="scroll-container">
+        <h2 class="section-title">Horro Games</h2>
+     <div class="scroll-container">
+    <div class="scroll-track">
+        <img src="img/Resident_Evil_7_cover_art.jpg" >
+        <img src="img/nightmares3-1692881952367.jpg">
+        <img src="img/images.jpeg">
+        <img src="img/iron-lung.jpg" >
+        <img src="img/85p2Dwh5iDhUzRKe40QeNYh3.png.avif" >
+        <img src="img/10.jpg">
+        <img src="img/2a6901fad9bd11ff2a5fc0c63915ba16cd06d623dbf62043.jpg.avif">
+
+        <img src="img/Resident_Evil_7_cover_art.jpg" >
+        <img src="img/nightmares3-1692881952367.jpg">
+        <img src="img/images.jpeg">
+        <img src="img/iron-lung.jpg">
+        <img src="img/85p2Dwh5iDhUzRKe40QeNYh3.png.avif">
+        <img src="img/10.jpg">
+        <img src="img/2a6901fad9bd11ff2a5fc0c63915ba16cd06d623dbf62043.jpg.avif">
+    </div>
+</div>   
+    </section>
+
+    <sectio class="scroll-container">
+        <h2 class="section-title">Open World Games</h2>
+     <div class="scroll-container">
+    <div class="scroll-track">
+        <img src="img/images-3.jpeg" >
+        <img src="img/once-human-1jg0b.jpg">
+        <img src="img/Screenshot 2026-04-25 at 11.34.50 AM.png">
+        <img src="img/images-2.jpeg" >
+        <img src="img/395b45219557497b6580e4ce372f8dea604ee5dd16f45da5.png.avif" >
+        <img src="img/where-winds-meet-tag-page-cover-art.avif">
+        <img src="img/Grand_Theft_Auto_V.png">
+
+        <img src="img/images-3.jpeg" >
+        <img src="img/once-human-1jg0b.jpg">
+        <img src="img/Screenshot 2026-04-25 at 11.34.50 AM.png">
+        <img src="img/images-2.jpeg" >
+        <img src="img/395b45219557497b6580e4ce372f8dea604ee5dd16f45da5.png.avif" >
+        <img src="img/where-winds-meet-tag-page-cover-art.avif">
+        <img src="img/Grand_Theft_Auto_V.png">
+    </div>
+</div>   
+    </section>
+
+    <section class="section-container">
+        <div class="community-box glass-card">
+            <h2>JOIN THE Game ZOne COMMUNITY</h2>
+            <p>Connect with millions of players and dominate the leaderboards.</p>
+            <div class="stats-grid">
+                <div class="stat-item"><strong>12M+</strong><span>Active Players</span></div>
+                <div class="stat-item"><strong>5K+</strong><span>Games Catalog</span></div>
+                <div class="stat-item"><strong>24/7</strong><span>Server Uptime</span></div>
+            </div>
+        </div>
+    </section>
+<footer>
+    <div class="footer-container">
+        <div class="footer-box">
+            <h3>GameZone</h3>
+            <p>The best gaming platform for gamers around the world.</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">Library</a>
+            <a href="#">Support</a>
+        </div>
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instgram.com"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.discord.com"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        ©️ 2026 GameZone. All rights reserved.
+    </div>
+    </footer>
+    <script>
+    const themeSheet   = document.getElementById('theme-stylesheet');
+    const themeToggle  = document.getElementById('themeToggle');
+    const themeIcon    = document.getElementById('themeIcon');
+    const themeLabel   = document.getElementById('themeLabel');
+
+    let isDark = localStorage.getItem('gamezone-theme') !== 'light';
+    applyTheme(isDark);
+
+    themeToggle.addEventListener('click', () => {
+        isDark = !isDark;
+        applyTheme(isDark);
+        localStorage.setItem('gamezone-theme', isDark ? 'dark' : 'light');
+    });
+
+    function applyTheme(dark) {
+        if (dark) {
+            themeSheet.href  = 'home.css';
+            themeIcon.textContent  = '☀️';
+            themeLabel.textContent = 'Light';
+        } else {
+            themeSheet.href  = 'home2.css';
+            themeIcon.textContent  = '🌙';
+            themeLabel.textContent = 'Dark';
+        }
+    }
+    const searchInput = document.getElementById('gameSearch');
+    const clearBtn = document.getElementById('clearBtn');
+    const searchInfo = document.getElementById('searchInfo');
+    const allCards = document.querySelectorAll('.trending-card');
+
+    const gameMap = [
+        { id: 'counter-strike2',      keywords: ['counter strike', 'counter-strike', 'cs2', 'cs', 'counterstrike'] },
+        { id: 'pagmata',              keywords: ['pagmata', 'pragmata'] },
+        { id: 'forza-horizon6',       keywords: ['forza', 'horizon', 'forza horizon', 'forza 6'] },
+        { id: 'cyberpunk2077',        keywords: ['cyberpunk', 'cyber punk', '2077', 'cyberpunk 2077'] },
+        { id: 'resident-evil-requiem',keywords: ['resident evil', 'requiem', 're evil', 'resident'] },
+        { id: 'spiderman2',           keywords: ['spider man', 'spiderman', 'spider-man'] },
+        { id: 'fifa2026',             keywords: ['fifa', 'fifa 2026', 'football'] },
+    ];
+
+    function searchGames(query) {
+        const q = query.trim().toLowerCase();
+        if (!q) { resetCards(); searchInfo.textContent = ''; clearBtn.classList.remove('visible'); return; }
+        clearBtn.classList.add('visible');
+        const matches = gameMap.filter(g => g.keywords.some(k => k.includes(q) || q.includes(k)));
+        if (matches.length === 0) {
+            allCards.forEach(card => card.classList.add('dimmed'));
+            allCards.forEach(card => card.classList.remove('highlight-found'));
+            searchInfo.textContent = `No games found for "${query}"`;
+            return;
+        }
+        const matchedIds = matches.map(m => m.id);
+        allCards.forEach(card => {
+            if (matchedIds.includes(card.id)) { card.classList.remove('dimmed'); card.classList.add('highlight-found'); }
+            else { card.classList.add('dimmed'); card.classList.remove('highlight-found'); }
+        });
+        const firstMatch = document.getElementById(matchedIds[0]);
+        if (firstMatch) firstMatch.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        searchInfo.textContent = `Found ${matches.length} game${matches.length > 1 ? 's' : ''}`;
+    }
+
+    function clearSearch() {
+        searchInput.value = '';
+        resetCards();
+        searchInfo.textContent = '';
+        clearBtn.classList.remove('visible');
+        searchInput.focus();
+    }
+
+    function resetCards() {
+        allCards.forEach(card => card.classList.remove('dimmed', 'highlight-found'));
+    }
+
+    searchInput.addEventListener('input', e => searchGames(e.target.value));
+    </script>
+</body>
+</html>

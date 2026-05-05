@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - GameZone</title>
+    <meta name="description" content="GameZone Support Page">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="Contact-Us.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="nav-brand">
+            GAME<span>ZONE</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="My-Profile.html">Profile</a>
+            <a href="library.html">Library</a>
+            <a href="Contact-Us.html" class="active">Support</a>
+            <a href="Nintendo-project.html">Nintendo</a>
+            <a href="ps5.html">PS5-PS4</a>
+            <a href="xbox.html">xbox</a>
+            <a href="pc.html">PC</a>
+            <a href="mobile.html">Mobile</a>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="#">
+                <button class="btn-login">LOGIN</button>
+            </a>
+            <button id="themeToggle" class="theme-btn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+    </nav>
+
+    <header>
+        <h1><i><span>Support</span> Center</i></h1>
+        <p>We're here to help you, Gamer</p>
+    </header>
+
+    <section>
+
+        <h2>Contact Us</h2>
+
+        <form class="contact-form">
+
+            <div>
+                <label>User Name</label>
+                <input type="text" placeholder="Enter your Name" required>
+            </div>
+
+            <div>
+                <label>Email</label>
+                <input type="email" placeholder="Enter your Email" required>
+            </div>
+
+            <div>
+                <label>Message</label>
+                <textarea placeholder="Write your message here ...."></textarea>
+            </div>
+
+            <div>
+                <input type="submit" value="SEND MESSAGE">
+            </div>
+
+        </form>
+
+    </section>
+
+    <hr>
+
+    <section>
+
+        <h3>Contact Information</h3>
+
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i><b>Email :</b> support@gamezone.com</p>
+            <p><i class="fas fa-phone"></i><b>Phone :</b> 01010101111</p>
+            <p><i class="fas fa-map-marker-alt"></i><b>Address :</b> Egypt, Cairo</p>
+        </div>
+
+    </section>
+
+    <hr>
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-box">
+                <h3>GameZone</h3>
+                <p>The best gaming platform for gamers around the world.</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <a href="#">Home</a>
+                <a href="#">Profile</a>
+                <a href="#">Library</a>
+                <a href="#">Support</a>
+            </div>
+
+            <div class="footer-box">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                 <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                 <a href="https://www.instgram.com"><i class="fab fa-instagram"></i></a>
+                 <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+                 <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                 <a href="https://www.discord.com"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 GameZone. All rights reserved.
+        </div>
+
+    </footer>
+
+    <script>
+        
+        const themeBtn = document.getElementById('themeToggle');
+        const icon = themeBtn.querySelector('i');
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+
+            if (document.body.classList.contains('light-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light'); 
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark'); 
+            }
+        });
+
+    </script>
+
+</body>
+</html>

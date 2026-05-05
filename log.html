@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styleLog.css">
+    <title>GameZone | Login and Up</title>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="formContainer sign-up" id="signUP">
+            <form id="formSignUp">
+                <h1>Create Account</h1>
+                <label for="name">Your name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+                <label for="email"><i class="fa-solid fa-at"></i>  Your email</label>
+                <input type="email" id="email" placeholder="Example@gmail.com" required>
+                <label for="pass"><i class="fa-solid fa-lock"></i>  Password</label>
+                <input type="password" id="pass" placeholder="Please write strong password" required>
+                <label for="joinDate">Today's joining date</label>
+                <input type="date" id="joinDate" required>
+                <button class="signup">Sign Up</button>
+                <p>Or Register Using</p>
+                <div class="icons">
+                    <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-xbox"></i></a>
+                    <a href="#"><i class="fa-brands fa-steam"></i></a>
+                </div>
+            </form>
+        </div>
+        <div class="formContainer sign-in" id="signIN">
+            <form id="formSignIn">
+                <h1>Sign In Your Account</h1>
+                <div class="icons">
+                    <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-xbox"></i></a>
+                    <a href="#"><i class="fa-brands fa-steam"></i></a>
+                </div>
+                <p>Or use a email and password</p>
+                <i class="fa-regular fa-circle-envelope"></i>
+                <label for="emailIn"><i class="fa-solid fa-at"></i>  Your email</label>
+                <input type="email" id="emailIn" placeholder="Example@gmail.com" required>
+                <label for="passwordIn"><i class="fa-solid fa-lock"></i>  Password</label>
+                <input type="password" id="passwordIn" placeholder="Enter your password" required>
+                <button class="signin">Sign In</button>
+                <a href="#" id="forgetPass">Forget your password ?</a>
+            </form>
+        </div>
+        <div class="toggle-container">
+        <div class="toggle">
+            <div class="toggle-panel left">
+                <h1>Welcome again</h1>
+                <p>Write your personal data to enter</p>
+                <button class="hid" id="login">Sign In</button>
+            </div>
+            <div class="toggle-panel right">
+                <h1>Welcom to the best gaming website</h1>
+                <p>This is your first time registering your personal data</p>
+                <button class="hid" id="register">Sign Up</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+
+        const registerBtn = document.getElementById('register');
+        const container = document.getElementById('container');
+        const loginBtn = document.getElementById('login');
+
+        registerBtn.addEventListener('click', ()=>{
+            container.classList.add("active");
+        });
+
+        loginBtn.addEventListener('click', ()=>{
+            container.classList.remove("active");
+        });
+
+        function register(userName, userPassword, userEmail) {
+
+            if (userPassword.length < 8) {
+                alert("Password must be at least 8 characters long!");
+                return;
+            }
+
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(userEmail)) {
+                alert("Please enter a valid email address");
+                return;
+            }
+
+            let saveUsers = JSON.parse(localStorage.getItem("allUsers")) || [];
+            let newUser = {
+                name: userName,
+                pass: userPassword,
+                email: userEmail,
+                date: new Date().toLocaleDateString()
+            }
+
+            let isExist = saveUsers.some(user => user.email === userEmail);
+            if (isExist) {
+                alert("This email is already registered!");
+                return;
+            }
+
+            saveUsers.push(newUser);
+            localStorage.setItem('allUsers', JSON.stringify(saveUsers));
+
+            localStorage.setItem('loggedInUser', userName);
+            window.location.href = "index.html";
+        }
+
+        const signUpForm = document.querySelector('#formSignUp');
+        if(signUpForm) {
+            signUpForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                let nameVal = document.querySelector('#name').value;
+                let emailVal = document.querySelector('#email').value;
+                let passVal = document.querySelector('#pass').value;
+
+                register(nameVal, passVal, emailVal);
+            });
+        }
+
+        function login(emailIn, passwordIn) {
+            let rawData = localStorage.getItem('allUsers');
+            if (!rawData) {
+                alert("No registered users yet , Create your account for the first time");
+                return;
+            }
+        
+            let saveUsers = JSON.parse(rawData);
+            let user = saveUsers.find(function(item) {
+                return item.email === emailIn && item.pass === passwordIn;
+            });
+        
+            if(user) {
+                localStorage.setItem('currentUserEmail', user.email);
+                localStorage.setItem('loggedInUser', user.name);
+                window.location.href = "My-Profile.html";
+            } else {
+                alert("The email or password is incorrect , Please try again");
+            }
+        }
+
+        const loginForm = document.querySelector('#formSignIn');
+        if(loginForm) {
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                let email = document.querySelector('#emailIn').value;
+                let pass = document.querySelector('#passwordIn').value;
+
+                login(email, pass);
+            });
+        }
+
+        const forgetLink = document.getElementById('forgetPass');
+
+        if (forgetLink) {
+            forgetLink.addEventListener('click', function(e) {
+                e.preventDefault();
+            
+                let emailRequest = prompt("Please enter your email to find your password : ");
+            
+                if (!emailRequest) return;
+                let allUsers = JSON.parse(localStorage.getItem("allUsers")) || [];
+                let user = allUsers.find(item => item.email === emailRequest);
+
+                if (user) {
+                    alert("Your password is : " + user.pass);
+                } else {
+                    alert("This email is not registered in our system");
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

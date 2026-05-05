@@ -17,7 +17,7 @@
             <a href="library.html">Library</a>
             <a href="Contact-Us.html">Support</a>
         </div>    
-        <a href="log.html"><button class="btn-login">LOGIN</button></a>
+        <a href="log.html"><button id="logoutBtn" class="btn-login">LOGIN</button></a>
     </nav>
     
     <button class="btn-theme-toggle" id="themeToggle" title="Switch Theme">
@@ -290,6 +290,40 @@ Call of Duty: Modern Warfare throws you into a battlefield where survival depend
     }
 
     searchInput.addEventListener('input', e => searchGames(e.target.value));
+
+
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUserEmail');
+                localStorage.removeItem('loggedInUser');
+
+                window.location.href = "log.html"; 
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const authBtn = document.getElementById('logoutBtn'); 
+        
+            const currentUser = localStorage.getItem('currentUserEmail');
+        
+            if (currentUser) {
+                logoutBtn.innerText = "SIGNOUT";
+
+                logoutBtn.onclick = function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUserEmail');
+                    localStorage.removeItem('loggedInUser');
+                    location.reload();
+                };
+            } else {
+                logoutBtn.innerText = "Sign In";
+                logoutBtn.onclick = function() {
+                    window.location.href = "log.html";
+                };
+            }
+        });
     </script>
 </body>
 </html>

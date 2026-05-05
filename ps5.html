@@ -25,7 +25,7 @@
             </ul>
             <div class="user-actions">
                 <a href="My-Profile.html" class="user-icon">Profile</a>
-                <a href="log.html" class="login-btn">Login</a>
+                <a id="logoutBtn" href="log.html" class="login-btn">Login</a>
                 <button class="mode-toggle">Change theme</button>
                 <div class="search-box">
                     <input type="text" placeholder="Search PS4 Games...">
@@ -161,6 +161,39 @@
         <p>&copy; 2026 GameZone Team. All Rights Reserved.</p>
     </div>
 </footer>
-<script src="script.js"></script>
+<script src="script.js">
+    const logoutBtn = document.getElementById('logoutBtn');
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('currentUserEmail');
+                localStorage.removeItem('loggedInUser');
+
+                window.location.href = "log.html"; 
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const authBtn = document.getElementById('logoutBtn'); 
+        
+            const currentUser = localStorage.getItem('currentUserEmail');
+        
+            if (currentUser) {
+                logoutBtn.innerText = "SIGNOUT";
+
+                logoutBtn.onclick = function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUserEmail');
+                    localStorage.removeItem('loggedInUser');
+                    location.reload();
+                };
+            } else {
+                logoutBtn.innerText = "Sign In";
+                logoutBtn.onclick = function() {
+                    window.location.href = "log.html";
+                };
+            }
+        });
+</script>
 </body>
 </html>
